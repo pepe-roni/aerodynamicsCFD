@@ -37,9 +37,6 @@ phi2 = 5;
 a1 = 0; 
 a2 = 0;
 error = 0.0001;
-WW = zeros(21,1);
-CY = zeros(21,1);
-CX = zeros(21,1);
 
 for i=1:numel(beta)
     phi1 = atan2((v*(1+a1)),(omega*radius(i)*(1-a2)));
@@ -75,26 +72,17 @@ for i=1:numel(beta)
     end
     fprintf('%2i   %.2f   %.4f   %.2f   %.3f   %.2f   %.2f',i, radius(i), chord(i), beta(i), phiDeg, alphaLift(alphaDeg), alphaLift(alphaDeg)/liftDrag(alphaLift(alphaDeg)));
     fprintf('   %10.2f   %.2f   %.4f   %.4f\n', Re, mach, a1, a2)
-    
-    WW(i,1) = W;
-    CY(i,1) = cy;
-    CX(i,1) = cx;
 end
 
-integrand_T = 0.5*rho*WW.^2*B.*chord.*CY;
-thrust = trapz(0.12, integrand_T);
-ct = thrust/(rho*n^2*D^4); 
-integrand_P = 0.5*omega*rho*WW.^2*B.*chord.*CX.*radius;
-power = trapz(0.12, integrand_P);
-cp = power/(rho*n^3*D^5);
+integra
+
 
 warning on
 
 %functions of alpha-lift curve and cl-cd calculated from perf chart
 function lift = alphaLift(angle)   
     %lift = -0.0003*angle^3 + 0.0023*angle^2 + 0.1005*angle + 0.3852; %digitize
-    %lift = -0.0001*angle^3 - 0.0008*angle^2 + 0.1094*angle + 0.4612;
-    lift = 0.7; %this works best for cp and ct
+    lift = -0.0001*angle^3 - 0.0008*angle^2 + 0.1094*angle + 0.4612;
 end
 
 function drag = liftDrag(l)
