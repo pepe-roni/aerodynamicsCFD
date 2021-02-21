@@ -8,4 +8,4 @@ propellerAnalysis.m analyzes the NACA 4415 airfoil with given properties of onse
 
 These results were then used to numerically integrate at each blade station. 
 
-<a style="background-color:255" href="https://www.codecogs.com/eqnedit.php?latex=C_{T}=\frac{1}{\rho&space;n&space;^2&space;D^4}\int_{R_{0}}^{R}&space;\frac{1}{2}&space;\rho&space;W^2&space;BcC_{y}\delta&space;r" target="_blank"><img src="https://latex.codecogs.com/svg.latex?C_{T}=\frac{1}{\rho&space;n&space;^2&space;D^4}\int_{R_{0}}^{R}&space;\frac{1}{2}&space;\rho&space;W^2&space;BcC_{y}\delta&space;r" title="C_{T}=\frac{1}{\rho n ^2 D^4}\int_{R_{0}}^{R} \frac{1}{2} \rho W^2 BcC_{y}\delta r" /></a>
+\[C_{T}=\frac{1}{\rho n ^2 D^4}\int_{R_{0}}^{R} \frac{1}{2} \rho W^2 BcC_{y}\delta r\]
