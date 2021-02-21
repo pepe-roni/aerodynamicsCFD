@@ -15,3 +15,8 @@ These results were then used to numerically integrate at each blade station as f
 Where rho is the density of air, n is propeller rotations per second, omega is propeller radians per second, D is the diameter of the propeller, R is the radius of the propeller tip, R0 is the radius of the propeller at the root, W is the local velocity, B is the number of blades, c is the chord at the specific blade station, Cy is the thrust force coefficent, and Cx is the torque force coefficient.
 
 So the script will then calculate the Thrust (T), Power (P), Coefficent of Thrust (Ct), Coefficient of Power (Cp), Advance Ratio (AR or J), Activity Factor (AF), Efficiency Factor (ETA), and Solidity.
+
+# 136 Source Panel Method
+The source panel method is useful as a numerical method for solving flows of arbitrary shapes. For this to be possible, the body must be broken into panels of length dS and given a source strength to simulate a solid body; the more panels, the better the resolution of the final result [1]. In this project, the source panel method will be used to analyze flow over a non lifting circular cylinder of radius 1 and compare our results to the proven analytical method. Example 3.17 from Fundamentals of Aerodynamics by John Anderson will be used as a guide.
+
+Increasing the number of panels provided more data points along the analytical calculation plot. It improved the resolution of the plotted points but not the accuracy of the plot. The source panel method proved to match the analytical derivation essentially perfectly. If this was conducted in the real world, the results would likely be similar but not exact because it is difficult to keep the ideal conditions necessary for this method.
