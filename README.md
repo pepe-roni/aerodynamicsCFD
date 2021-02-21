@@ -12,6 +12,6 @@ These results were then used to numerically integrate at each blade station as f
 
 <img src="https://latex.codecogs.com/svg.latex?{\color{Orange}&space;C_{p}=\frac{1}{\rho&space;n&space;^3&space;D^5}\int_{R_{0}}^{R}&space;\frac{1}{2}\Omega\rho&space;W^2&space;BcC_{x}r\delta&space;r&space;}" title="{\color{Orange} C_{p}=\frac{1}{\rho n ^3 D^5}\int_{R_{0}}^{R} \frac{1}{2}\Omega\rho W^2 BcC_{x}r\delta r }" />
 
-Where rho is the density of air, n is propeller rotations per second, D is the diameter of the propeller, R is the radius of the propeller tip, R0 is the radius of the propeller at the root, W is the local velocity, B is the number of blades, c is the chord at the specific blade station, Cy is the thrust force coefficent, and Cx is the torque force coefficient.
+Where rho is the density of air, n is propeller rotations per second, omega is propeller radians per second, D is the diameter of the propeller, R is the radius of the propeller tip, R0 is the radius of the propeller at the root, W is the local velocity, B is the number of blades, c is the chord at the specific blade station, Cy is the thrust force coefficent, and Cx is the torque force coefficient.
 
 So the script will then calculate the Thrust (T), Power (P), Coefficent of Thrust (Ct), Coefficient of Power (Cp), Advance Ratio (AR or J), Activity Factor (AF), Efficiency Factor (ETA), and Solidity.
