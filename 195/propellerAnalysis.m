@@ -4,7 +4,8 @@ close all
 warning off
 
 %init conditions
-rho = 23.77*10^-4; %density of air at sea level
+%rho = 23.77*10^-4; %density of air at sea level
+rho = 12.67*10^-4; %density 20000ft
 %rho = 0.00149620;
 mu = 3.737*10^-7; %viscosity
 %mu = 0.00022927;
@@ -13,8 +14,16 @@ mu = 3.737*10^-7; %viscosity
 D = 5.75;
 R = D/2;
 B = 2;
-v = 146;
+v = 161.33;
 rpm = 2400;
+thrust = 207;
+
+D = 14;
+R = D/2;
+B = 4;
+v = 400*88/60; %ft/s
+rpm = 1200;
+thrust = 3435.4
 
 n = rpm/60;
 omega = rpm*pi/30;
@@ -22,10 +31,12 @@ omega = rpm*pi/30;
 
 %load external geometry for propeller, change this to analyze other geo
 propellerGeo = readtable('propellerGeometry.csv');
+propellerGeo = readtable('propellerGeometryDesignRR.csv');
 %propellerGeo = readtable('propellerGeometryP51.csv');
 radius = propellerGeo.Root_ft_;
 chord = propellerGeo.Chord_ft_;
 beta = propellerGeo.Beta_deg_;
+
 %load external lift drag AOT data (if needed) EQs defined @bottom
 perfLift = readtable('performanceLift2.csv');
 global alpha_data
@@ -55,10 +66,14 @@ S = zeros(21,1);
 xi = zeros(21,1);
 ALPHA  = zeros(21,1);
 
+dBeta = 0;
+thrust_i = 0;
+while thrust_i<thrust
+fprintf(' I    R     CHORD    BETA    PHI      CCL    L/D      RN          MACH   A        AP\n\n');
 for i=1:numel(beta)
     phi1 = atan2((v*(1+a1)),(omega*radius(i)*(1-a2)));
     while abs(phi2 - phi1)>error
-        beta(i) = deg2rad(beta(i));
+        beta(i) = deg2rad(beta(i)+dBeta);
         alpha = beta(i) - phi1;
         alphaDeg = rad2deg(alpha);
         W = v*(1+a1)/sin(phi1);
@@ -92,6 +107,8 @@ for i=1:numel(beta)
         beta(i) = rad2deg(beta(i));
         mach = W/1100;
     end
+    
+    
     fprintf('%2i   %.2f   %.4f   %.2f   %.3f   %.2f   %.2f',i, radius(i), chord(i), beta(i), phiDeg, alphaLift(alphaDeg), alphaLift(alphaDeg)/liftDrag(alphaLift(alphaDeg)));
     fprintf('   %10.2f   %.2f   %.4f   %.4f\n', Re, mach, a1, a2)
     
@@ -103,12 +120,13 @@ for i=1:numel(beta)
     S(i,1) = B*chord(i)/(pi*R^2);
     xi(i,1) = radius(i)/R;
     ALPHA(i,1) = alphaDeg;
+    
 end
 
 dR = radius(end)-radius(end-1);
 integrand_T = 0.5*rho*WW.^2*B.*chord.*CY;
-thrust = trapz(dR, integrand_T); %lbs?
-ct = thrust/(rho*n^2*D^4); 
+thrust_i = trapz(dR, integrand_T); %lbs?
+ct = thrust_i/(rho*n^2*D^4); 
 integrand_P = 0.5*omega*rho*WW.^2*B.*chord.*CX.*radius;
 power = trapz(dR, integrand_P); %this is in ft lbs/sec
 cp = power/(rho*n^3*D^5);
@@ -119,8 +137,10 @@ solidity = trapz(dR,S);
 AF = (100000/(16*D))*trapz(xi,chord.*xi.^3); %activity factor for a single blade
 AF = AF*B; %activity factor for the entire propeller
 
-fprintf('\nThrust: %.2f  CT: %.4f  Power: %.1f  CP: %.4f  HP: %.2f  AdvR: %.3f  ETA: %.4f\n',thrust,ct,power,cp,hp,AR,ETA);
-fprintf('Solidity: %.3f  AF: %.2f\n', solidity, AF);
+dBeta = dBeta+ 0.0001;
+end
+fprintf('\nThrust: %.2f  CT: %.4f  Power: %.1f  CP: %.4f  HP: %.2f  AdvR: %.3f  ETA: %.4f\n',thrust_i,ct,power,cp,hp,AR,ETA);
+fprintf('Solidity: %.3f  AF: %.2f   dBeta: %.5f\n', solidity, AF, dBeta);
 warning on
 
 %functions of alpha-lift curve and cl-cd calculated from perf chart
@@ -142,6 +162,7 @@ function lift = alphaLift(angle)
     [~,closestInd2] = min(difference);
     
     lift = interpo(alpha_data(closestInd),alpha_data(closestInd2), angle, c_lift(closestInd), c_lift(closestInd2));
+    
 end
 
 function drag = liftDrag(l)

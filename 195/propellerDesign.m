@@ -5,20 +5,20 @@ warning off
 
 %init conditions
 rho = 23.77*10^-4; %density of air at sea level
-%rho = 0.00149620;
+rho = 12.67*10^-4; %density 20000ft
 mu = 3.737*10^-7; %viscosity
 %mu = 0.00022927;
 
 %%DEFINING VARIABLES 
 D = 14;
 R = D/2;
-B = 2;
-v = 161.33; %ft/s
-pwr = 70; %bhp
+B = 4;
+v = 400*88/60; %ft/s
+pwr = 4000; %bhp
 pwr = pwr*550; %lbft/s
 thrust = 0;
-J = 0.7; %advance ratio, Cl = J
-rpm = 2400;
+rpm = 1200;
+rroot = 1.5/2; %radius of the root
 
 Cp = 2*pwr/(rho*v^3*pi*R^2);
 Ct = 2*thrust/(rho*v^2*pi*R^2);
@@ -31,7 +31,7 @@ lambda = v/(omega*R); %speed ratio
 %load external geometry for propeller, change this to analyze other geo
 propellerGeo = readtable('propellerGeometry.csv');
 %propellerGeo = readtable('propellerGeometryP51.csv');
-radius = propellerGeo.Root_ft_;
+radius(:,1) = (rroot:(R-rroot)/20:R);
 % chord = propellerGeo.Chord_ft_;
 % beta = propellerGeo.Beta_deg_;
 %load external lift drag AOT data (if needed) EQs defined @bottom
@@ -78,18 +78,18 @@ while abs(zeta2 - zeta1)>error
         phi(i)= atan2(tan(phiT),xi(i)); 
         f = (B/2)*((1-radius(i)/R)/sin(phiT));
         F(i,1) = (2/pi)*acos(exp(-f));
-        G = F(i)*X(i)*sin(phi(i))*cos(phi(i));
+        G(i,1) = F(i)*X(i)*sin(phi(i))*cos(phi(i));
         
         Cl = 0.7; %design criteria
         alpha = liftAlpha(0.7);
         Cd = liftDrag(Cl);
-        e = Cl/Cd;
+        e = Cd/Cl;
         alphaRad(i) = deg2rad(alpha);
         
         gamma = 2*pi*v^2*zeta1*G/(R*omega);
         wt=v*zeta1*sin(phi(i))*cos(phi(i));
         wn=wt/sin(phi(i));
-        Wc = (4*pi*v^2*G*v*R*zeta1)/(B*omega*Cl);
+        Wc(i,1) = (4*pi*v^2*G(i)*zeta1)/(B*omega*Cl);
         
         %interference factors
         a1 = ((zeta1/2)*cos(phi(i))^2)*(1-e*tan(phi(i)));
@@ -98,11 +98,11 @@ while abs(zeta2 - zeta1)>error
         
         %geometry
         beta(i,1) = alphaRad(i)+phi(i);
-        chord(i,1) = Wc/W;
+        chord(i,1) = Wc(i)/W;
         
-        I1P(i,1) = 4*xi(i)*G*(1-e*tan(phi(i)));
-        I2P(i,1) = lambda*(I1P(i)/(2*xi(i)))*(1+e/tan(phi(i)))*sin(phi(i))*cos(phi(i));
-        J1P(i,1) = 4*xi(i)*G*(1+e/tan(phi(i)));
+        I1P(i,1) = 4*xi(i)*G(i)*(1-e*tan(phi(i)));
+        I2P(i,1) = lambda*(I1P(i)/2*xi(i))*(1+e/tan(phi(i)))*sin(phi(i))*cos(phi(i));
+        J1P(i,1) = 4*xi(i)*G(i)*(1+e/tan(phi(i)));
         J2P(i,1) = (J1P(i)/2)*(1-e*tan(phi(i)))*cos(phi(i))^2;
     end
    zeta2 = zeta1;
@@ -119,8 +119,23 @@ while abs(zeta2 - zeta1)>error
        Ct = I1*zeta1 - I2*(zeta1^2);
    end
 end
-fprintf('RADIUS   CHORD   BETA')
-fprintf
+beta = rad2deg(beta);
+fprintf('\nDesign Conditions:\n D:%ift  B:%i  V:%4.1fft/s  RPM:%i   rho:%.2ilbf/ft^3  Desired CL:%.3f\n\n',D,B,v,rpm,rho,Cl)
+fprintf(' I   Radius   Chord     Beta\n')
+for i=1:numel(chord)
+    fprintf('%2i   %.4f   %.4f    %.4f\n',i,radius(i),chord(i),beta(i))
+end
+thrust = Ct*(rho*v^2*R^2*pi*0.5);
+power = Cp*0.5*rho*v^3*pi*R^2;
+power = power/550;
+eta = Ct/Cp;
+AR = v/(n*D); %advance ratio, J
+AF = (100000/(16*D))*trapz(xi,chord.*xi.^3); %activity factor for a single blade
+AF = AF*B;
+
+fprintf('\nCt:%.3f  Thrust:%.1f  Cp:%.3f   Power:%.1f   ETA:%.2f   AR:%.2f    AF:%.2f\n',Ct,thrust,Cp,power,eta,AR,AF)
+
+
 
 warning on
 
