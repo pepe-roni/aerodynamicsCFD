@@ -133,7 +133,7 @@ AR = v/(n*D); %advance ratio, J
 AF = (100000/(16*D))*trapz(xi,chord.*xi.^3); %activity factor for a single blade
 AF = AF*B;
 
-fprintf('\nCt:%.3f  Thrust:%.1f  Cp:%.3f   Power:%.1f   ETA:%.2f   AR:%.2f    AF:%.2f\n',Ct,thrust,Cp,power,eta,AR,AF)
+fprintf('\nCt:%.3f  Thrust:%.1f  Cp:%.3f   Power(HP):%.1f   ETA:%.2f   AR:%.2f    AF:%.2f\n',Ct,thrust,Cp,power,eta,AR,AF)
 
 
 
