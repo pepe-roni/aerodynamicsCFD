@@ -18,20 +18,20 @@ v = 161.33;
 rpm = 2400;
 thrust = 207;
 
-D = 14;
-R = D/2;
-B = 4;
-v = 400*88/60; %ft/s
-rpm = 1200;
-thrust = 3435.4
-
+% D = 14;
+% R = D/2;
+% B = 4;
+% v = 400*88/60; %ft/s
+% rpm = 1200;
+% thrust = 3435.4;
+% 
 n = rpm/60;
 omega = rpm*pi/30;
 
 
 %load external geometry for propeller, change this to analyze other geo
 propellerGeo = readtable('propellerGeometry.csv');
-propellerGeo = readtable('propellerGeometryDesignRR.csv');
+%propellerGeo = readtable('propellerGeometryDesignRR.csv');
 %propellerGeo = readtable('propellerGeometryP51.csv');
 radius = propellerGeo.Root_ft_;
 chord = propellerGeo.Chord_ft_;
@@ -69,6 +69,7 @@ ALPHA  = zeros(21,1);
 dBeta = 0;
 thrust_i = 0;
 while thrust_i<thrust
+clc
 fprintf(' I    R     CHORD    BETA    PHI      CCL    L/D      RN          MACH   A        AP\n\n');
 for i=1:numel(beta)
     phi1 = atan2((v*(1+a1)),(omega*radius(i)*(1-a2)));
@@ -78,8 +79,8 @@ for i=1:numel(beta)
         alphaDeg = rad2deg(alpha);
         W = v*(1+a1)/sin(phi1);
         Re = (rho*W*chord(i))/mu;  
-        cy = alphaLift(alphaDeg)*cos(phi1)-liftDrag(alphaLift(alphaDeg))*sin(phi1);
-        cx = alphaLift(alphaDeg)*sin(phi1)+liftDrag(alphaLift(alphaDeg))*cos(phi1);
+        cy = alphaLift(alphaDeg)*cos(phi1)-liftDrag(alphaLift(alphaDeg))*sin(phi1); %thrust force coeff
+        cx = alphaLift(alphaDeg)*sin(phi1)+liftDrag(alphaLift(alphaDeg))*cos(phi1); %torque force coeff
         
         %tip correction
         if radius(i)/R == 1
@@ -88,7 +89,7 @@ for i=1:numel(beta)
                
         phiT = atan2(tan(phi1)*radius(i),R);
         f = (B/2)*((1-radius(i)/R)/sin(phiT));
-        F = (2/pi)*acos(exp(-f));
+        F = (2/pi)*acos(exp(-f)); %prant loss 
         
         sigma = B*chord(i)/(2*pi*radius(i));
         a1 = (sigma/(4*F))*(cy/sin(phi1)^2)/(1-(sigma/(F*4))*(cy/sin(phi1)^2));
@@ -141,6 +142,8 @@ dBeta = dBeta+ 0.0001;
 end
 fprintf('\nThrust: %.2f  CT: %.4f  Power: %.1f  CP: %.4f  HP: %.2f  AdvR: %.3f  ETA: %.4f\n',thrust_i,ct,power,cp,hp,AR,ETA);
 fprintf('Solidity: %.3f  AF: %.2f   dBeta: %.5f\n', solidity, AF, dBeta);
+%run external functions
+plotGeometry
 warning on
 
 %functions of alpha-lift curve and cl-cd calculated from perf chart

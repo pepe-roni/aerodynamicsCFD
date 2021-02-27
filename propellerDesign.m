@@ -135,7 +135,8 @@ AF = AF*B;
 
 fprintf('\nCt:%.3f  Thrust:%.1f  Cp:%.3f   Power(HP):%.1f   ETA:%.2f   AR:%.2f    AF:%.2f\n',Ct,thrust,Cp,power,eta,AR,AF)
 
-
+%run external functions
+plotGeometry
 
 warning on
 
