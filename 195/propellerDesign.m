@@ -6,8 +6,9 @@ warning off
 %init conditions
 rho = 23.77*10^-4; %density of air at sea level
 rho = 12.67*10^-4; %density 20000ft
+rho = 0.00149620;
 mu = 3.737*10^-7; %viscosity
-%mu = 0.00022927;
+mu = 0.00022927;
 
 %%DEFINING VARIABLES 
 D = 14;
@@ -15,11 +16,21 @@ R = D/2;
 B = 4;
 v = 400*88/60; %ft/s
 pwr = 4000; %bhp
-pwr = pwr*550; %lbft/s
 thrust = 0;
 rpm = 1200;
 rroot = 1.5/2; %radius of the root
 
+%%DEFINING VARIABLES 
+D = 11.17;
+R = D/2;
+B = 4;
+v = 400; %ft/s
+pwr = 800; %bhp
+thrust = 0;
+rpm = 1000;
+rroot = 1.5/2; %radius of the root
+
+pwr = pwr*550; %lbft/s
 Cp = 2*pwr/(rho*v^3*pi*R^2);
 Ct = 2*thrust/(rho*v^2*pi*R^2);
 
@@ -29,7 +40,8 @@ omega = rpm*pi/30;
 lambda = v/(omega*R); %speed ratio
 
 %load external geometry for propeller, change this to analyze other geo
-propellerGeo = readtable('propellerGeometry.csv');
+%(NOT FOR DESIGN)
+%propellerGeo = readtable('propellerGeometry.csv');
 %propellerGeo = readtable('propellerGeometryP51.csv');
 radius(:,1) = (rroot:(R-rroot)/20:R);
 % chord = propellerGeo.Chord_ft_;
@@ -120,7 +132,7 @@ while abs(zeta2 - zeta1)>error
    end
 end
 beta = rad2deg(beta);
-fprintf('\nDesign Conditions:\n D:%ift  B:%i  V:%4.1fft/s  RPM:%i   rho:%.2ilbf/ft^3  Desired CL:%.3f\n\n',D,B,v,rpm,rho,Cl)
+fprintf('\nDesign Conditions:\n D:%1.2fft  B:%i  V:%4.1fft/s  RPM:%i   rho:%.2ilbf/ft^3  Desired CL:%.3f\n\n',D,B,v,rpm,rho,Cl)
 fprintf(' I   Radius   Chord     Beta\n')
 for i=1:numel(chord)
     fprintf('%2i   %.4f   %.4f    %.4f\n',i,radius(i),chord(i),beta(i))
@@ -137,7 +149,7 @@ fprintf('\nCt:%.3f  Thrust:%.1f  Cp:%.3f   Power(HP):%.1f   ETA:%.2f   AR:%.2f  
 
 %run external functions
 plotGeometry
-
+plotSpanwise
 warning on
 
 %functions of alpha-lift curve and cl-cd calculated from perf chart
