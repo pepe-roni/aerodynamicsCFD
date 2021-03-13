@@ -19,6 +19,8 @@ So the script will then calculate the Thrust (T), Power (P), Coefficent of Thrus
 An output can be seen here:
 https://github.com/pepe-roni/aerodynamicsCFD/blob/main/195/output.png
 
+See a full report here! https://docs.google.com/document/d/1Q3HVWSurWS-HKOuec8uOBUdu3PdFcdoMMpoL0xtbG_E/edit?usp=sharing
+
 # 136 Source Panel Method
 The source panel method is useful as a numerical method for solving flows of arbitrary shapes. For this to be possible, the body must be broken into panels of length dS and given a source strength to simulate a solid body; the more panels, the better the resolution of the final result [1]. In this project, the source panel method will be used to analyze flow over a non lifting circular cylinder of radius 1 and compare our results to the proven analytical method. Example 3.17 from Fundamentals of Aerodynamics by John Anderson will be used as a guide.
 
