@@ -60,7 +60,7 @@ fprintf(' I    R     CHORD    BETA    PHI      CCL    L/D      RN          MACH 
 
 %%analysis procedure
 
-for j = 1:10
+for j = 1:20
     %reset init values
     dBeta = 0;
     thrust_i = 0;
@@ -152,9 +152,10 @@ for j = 1:10
 %     end
     CP(j) = cp;
     CT(j) = ct;
+    BB(j) = B; 
     J(j) = v/(n*D); %advance ratio, J
     eta(j) = ct*J(j)/cp;
-    v = v+5;
+    B = B+1;
 end
 fprintf('\nThrust: %.2f  CT: %.4f  Power: %.1f  CP: %.4f  HP: %.2f  AdvR: %.3f  ETA: %.4f\n',thrust_i,ct,power,cp,hp,AR,ETA);
 fprintf('Solidity: %.3f  AF: %.2f   dBeta: %.5f\n', solidity, AF, dBeta);
@@ -164,20 +165,20 @@ plotSpanwise
 hold off
 figure(3)
 yyaxis right
-plot(J,eta,'-s')
+plot(BB,eta,'-s')
 xlabel('J')
 ylabel('ETA')
 % xlim([0.3 1])
 %ylim([0.9 1])
-title('Design Propeller ETA, CP, CT vs J')
+title('Design Propeller ETA, CP, CT vs Blades')
 hold on
 yyaxis left
-plot(J,CP,'-s')
-plot(J,CT,'m-s')
+plot(BB,CP,'-s')
+plot(BB,CT,'m-s')
 % xlim([0.3 1])
- ylim([0 0.5])
+% ylim([0 0.5])
 ylabel('CT,CP')
-xlabel('J')
+xlabel('Number of Blades')
 legend('Cp','Ct','ETA')
 
 warning on

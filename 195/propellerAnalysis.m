@@ -4,33 +4,34 @@ close all
 warning off
 
 %init conditions
-%rho = 23.77*10^-4; %density of air at sea level
-rho = 12.67*10^-4; %density 20000ft
+% rho = 23.77*10^-4; %density of air at sea level
+% rho = 12.67*10^-4; %density 20000ft
 rho = 0.00149620;
-mu = 3.737*10^-7; %viscosity
-mu = 0.00022927;
+% mu = 3.737*10^-7; %viscosity
+% mu = 0.00022927;
+mu = 0.00015730;
 
 %%DEFINING VARIABLES 
-D = 5.75;
-R = D/2;
-B = 2;
-v = 161.33;
-rpm = 2400;
-thrust = 207;
-
-% D = 14;
+% D = 5.75;
 % R = D/2;
-% B = 4;
-% v = 400*88/60; %ft/s
-% rpm = 1200;
-% thrust = 3435.4;
-% 
+% B = 2;
+% v = 161.33;
+% rpm = 2400;
+% thrust = 207.44;
+
+% D = 7;
+% R = D/2;
+% B = 3;
+% v = 200; %ft/s
+% rpm = 2400;
+% thrust = 676.5;
+
 
 D = 11.17;
 R = D/2;
 B = 4;
 v = 400; %ft/s
-thrust = 1215.7;
+thrust = 1015.7;
 rpm = 1000;
 
 n = rpm/60;
@@ -38,7 +39,8 @@ omega = rpm*pi/30;
 
 
 %load external geometry for propeller, change this to analyze other geo
-propellerGeo = readtable('propellerGeometry.csv');
+%propellerGeo = readtable('propellerGeometry206Design.csv');
+% propellerGeo = readtable('propellerGeometry150Design.csv');
 %propellerGeo = readtable('propellerGeometryDesignRR.csv');
 propellerGeo = readtable('propellerGeometryP51Design.csv');
 radius = propellerGeo.Root_ft_;
@@ -79,6 +81,7 @@ dBeta = 0;
 thrust_i = 0;
 while thrust_i<thrust
 clc
+fprintf('\nConditions:\n D:%1.2fft  B:%i  V:%4.1fft/s  RPM:%i   rho:%.2ilbf/ft^3  Desired Thrust:%2.3f\n\n',D,B,v,rpm,rho,thrust)
 fprintf(' I    R     CHORD    BETA    PHI      CCL    L/D      RN          MACH   A        AP\n\n');
 for i=1:numel(beta)
     phi1 = atan2((v*(1+a1)),(omega*radius(i)*(1-a2)));

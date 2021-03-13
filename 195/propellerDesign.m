@@ -4,23 +4,23 @@ close all
 warning off
 
 %init conditions
-rho = 23.77*10^-4; %density of air at sea level
-rho = 12.67*10^-4; %density 20000ft
+% rho = 23.77*10^-4; %density of air at sea level
+% rho = 12.67*10^-4; %density 20000ft
 rho = 0.00149620;
-mu = 3.737*10^-7; %viscosity
-mu = 0.00022927;
+%mu = 3.737*10^-7; %viscosity
+mu = 0.00015730
 
 %%DEFINING VARIABLES 
-D = 14;
-R = D/2;
-B = 4;
-v = 400*88/60; %ft/s
-pwr = 4000; %bhp
-thrust = 0;
-rpm = 1200;
-rroot = 1.5/2; %radius of the root
+% D = 5.75;
+% R = D/2;
+% B = 2;
+% v = 161.33; %ft/s
+% pwr = 0; %bhp
+% thrust = 207.44;
+% rpm = 2400;
+% rroot = 1/2; %radius of the root
 
-%%DEFINING VARIABLES 
+%DEFINING VARIABLES 
 D = 11.17;
 R = D/2;
 B = 4;
