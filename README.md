@@ -2,7 +2,7 @@
 Matlab scripts to calculate, analyze, and simulate aerodynamic flows of various sorts. 
 
 # 195 Propeller Analysis
-In this course, I analyzed propeller geometry and its impact on aerodynamic properties. It follows the "Design of Optimum Propellers" from AIAA-83-0190, and I was taught by none other than one of the authors himself, Robert Liebeck.
+In this project, I analyzed propeller geometry and its impact on aerodynamic properties. It follows the "Design of Optimum Propellers" from AIAA-83-0190, and I was taught by none other than one of the authors himself, Robert Liebeck.
 
 propellerAnalysis.m analyzes the NACA 4415 airfoil with given properties of onset velocity, diameter, RPM, and num of blades. The characteristics of the airfoil were also digitized and interpolated in the MATLAB script, which is able to get CL values from angle of attack and CD from CL. The script utilizes iterative convergence to calculate flow angle (phi), axial interference factor (A or a1), and rotational interference factor (AP or a2). General aerodynamic properties are also calculated, such as CL, L/D, Reynolds Number (RN or Re), and Mach Number. 
 
@@ -21,9 +21,27 @@ https://github.com/pepe-roni/aerodynamicsCFD/blob/main/195/output.png
 
 See a full report here! https://docs.google.com/document/d/1Q3HVWSurWS-HKOuec8uOBUdu3PdFcdoMMpoL0xtbG_E/edit?usp=sharing
 
+# 112 Propulsion Systems - Supersonic Turbofan Engine Design
+The objective of this project was to design a turbofan engine for a commercial application. In this real life example, we are tuning our parameters to be on par with an example from Boom Technologies (https://boomsupersonic.com). For this project, we will be designing to meet the requirements for their supersonic business jet, the Overture. To have a compelling option for them, we must meet their design specifications which we will cover in the introduction. Additionally, we must tune parameters of the turbofan engine on design characteristics to achieve the desired outcome. These include turbine inlet temperature, compressor pressure ratio, bypass ratio, bypass pressure ratio, and engine inlet diameter. Tradeoffs and compromises must be made in order for all specifications and requirements to be met.
+
+See full report: https://docs.google.com/document/d/1nposa372G0WSS5NIN29Xs4I7jhmCFPcny86xvYq9tRo/edit?usp=sharing
+
+# 112 Propulsion Systems - Ramjet On-design Performance
+Ramjets are simple air-breathing engines that operate primarily (and most optimally) in supersonic flight. While subsonic speeds are possible, we will see how the ramjet performs with varying and increasing Mach number flows. The ramjet is largely dependent on the maximum temperature of the combustion chamber. This is typically limited by the constraints and choice of the material. Having a higher temperature in combustion will typically result in better efficiency in both thrust and fuel consumption. In this report, we will explore the thrust, fuel consumption, efficiencies, and other on-design parameters of the ramjet engine in super and partially hypersonic flight.
+
+See full report: https://docs.google.com/document/d/1Ez_rfg51uyH499CT98kBn2j6Q9d20e1HbWmX-NeTIis/edit?usp=sharing
+
+# 136 Compressible Flow - Subsonic and Supersonic Windtunnel Designs
+The objective of this project was to design a subsonic wind tunnel with some predefined design requirements. In our case, we have a predetermined test chamber area size, minimum test chamber length, and a required test chamber mach number. The method included analyzing the isentropic flow after the fan section, choosing the areas of the inlet and outlet, and utilizing conservation of momentum and energy. Factors to keep in mind while designing are size, cost, and manufacturability considerations, aside from the actual engineering factors required. For instance, a powerful fan may be inefficient due to losses and consume excessive energy while having a very high cost to manufacture. The results of our design was a reasonably sized wind tunnel capable of the mentioned design requirements while performing relatively efficiently due to optimal cross sectional areas and therefore fan choice. 
+
+See Subsonic full report: https://docs.google.com/document/d/16VsFLv-CrFGwO4kMxLl0i2oblSZTRtRvYnd__ujW6EA/edit?usp=sharing
+
+See Supersonic full report: https://docs.google.com/document/d/15yiEJpc4Wh3ik4uxX1nBZMRepogn_o8ck7cygxznLxI/edit?usp=sharing
+
+
 # 136 Source Panel Method
 The source panel method is useful as a numerical method for solving flows of arbitrary shapes. For this to be possible, the body must be broken into panels of length dS and given a source strength to simulate a solid body; the more panels, the better the resolution of the final result [1]. In this project, the source panel method will be used to analyze flow over a non lifting circular cylinder of radius 1 and compare our results to the proven analytical method. Example 3.17 from Fundamentals of Aerodynamics by John Anderson will be used as a guide.
 
 Increasing the number of panels provided more data points along the analytical calculation plot. It improved the resolution of the plotted points but not the accuracy of the plot. The source panel method proved to match the analytical derivation essentially perfectly. If this was conducted in the real world, the results would likely be similar but not exact because it is difficult to keep the ideal conditions necessary for this method.
 
-A write-up can be seen here: http://sourcepanelmatlab.github.io/
+A write-up can be seen here: https://docs.google.com/document/d/1TA7tnR35MIVRT1I85CGtVVVetPy_QTQMVCb3TI2a4Mk/edit?usp=sharing
