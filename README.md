@@ -1,6 +1,15 @@
 # aerodynamicsCFD
 Matlab scripts to calculate, analyze, and simulate aerodynamic flows of various sorts. 
 
+# 159 Aircraft Design
+The objective of this project was to design a subsonic commercial transport. Composite, hybrid, and aluminum materials were compared as well as design variables such as engine type, engine configuration, aspect ratio, sweep, aisles, seats abreast, cargo weight, and airfoil type. Analysis and preliminary design code was written in MATLAB to form the basis of the aircraft. With texts from Shevell and Schaufele, the mechanical design and drawings of the aircraft was designed in Solidworks and rendered in NX as seen in the report.
+
+With the specifications, three aircraft designs will be presented and analyzed using the design code. Design variables will be changed to observe their impact on performance and risk, ultimately leading to which variables are most indicative of success. For this comparison the baseline will be an all-aluminum airframe and composite-aluminum hybrids and all composite designs will be analyzed. The primary comparison will be factors that affect DOC (direct operating costs) and weight. 
+
+The final design of the aircraft is capable of delivering 4000 lbs of cargo and 200 passengers over 4300 nmi. This can be extended to just below 6000 nmi with the removal of cargo and passenger load. This range exceeds that of the Boeing 737. Composite airframe structures and advancements in turbofan engines make significant improvements to aircraft design. With these additions, the airframe can achieve greater efficiency, lower DOC, and lower fuel and takeoff weights. When coupling this with other options such as high aspect ratio swept wings, supercritical airfoils, winglets, and anti-shock bodies, the improvements add up  significantly. The fully dimensioned plane resembles that of a medium class transport like the 737, and its performance, cost, and other parameters are also extremely similar.
+
+See a full report here! https://github.com/pepe-roni/aerodynamicsCFD/blob/main/MAE%20159/combinepdf%20(1).pdf
+
 # 195 Propeller Analysis
 In this project, I analyzed propeller geometry and its impact on aerodynamic properties. It follows the "Design of Optimum Propellers" from AIAA-83-0190, and I was taught by none other than one of the authors himself, Robert Liebeck.
 
