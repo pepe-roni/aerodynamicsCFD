@@ -2,6 +2,8 @@
 Matlab scripts to calculate, analyze, and simulate aerodynamic flows of various sorts. 
 
 # 159 Aircraft Design
+<img src="https://github.com/pepe-roni/aerodynamicsCFD/blob/main/MAE%20159/Screenshot%202022-06-15%20143608.jpg" />
+
 The objective of this project was to design a subsonic commercial transport. Composite, hybrid, and aluminum materials were compared as well as design variables such as engine type, engine configuration, aspect ratio, sweep, aisles, seats abreast, cargo weight, and airfoil type. Analysis and preliminary design code was written in MATLAB to form the basis of the aircraft. With texts from Shevell and Schaufele, the mechanical design and drawings of the aircraft was designed in Solidworks and rendered in NX as seen in the report.
 
 With the specifications, three aircraft designs will be presented and analyzed using the design code. Design variables will be changed to observe their impact on performance and risk, ultimately leading to which variables are most indicative of success. For this comparison the baseline will be an all-aluminum airframe and composite-aluminum hybrids and all composite designs will be analyzed. The primary comparison will be factors that affect DOC (direct operating costs) and weight. 
