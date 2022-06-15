@@ -6,6 +6,8 @@ Matlab scripts to calculate, analyze, and simulate aerodynamic flows of various 
 
 The objective of this project was to design a subsonic commercial transport. Composite, hybrid, and aluminum materials were compared as well as design variables such as engine type, engine configuration, aspect ratio, sweep, aisles, seats abreast, cargo weight, and airfoil type. Analysis and preliminary design code was written in MATLAB to form the basis of the aircraft. With texts from Shevell and Schaufele, the mechanical design and drawings of the aircraft was designed in Solidworks and rendered in NX as seen in the report.
 
+<img src="https://github.com/pepe-roni/aerodynamicsCFD/blob/main/MAE%20159/Screenshot%202022-06-15%20143624.jpg" />
+
 With the specifications, three aircraft designs will be presented and analyzed using the design code. Design variables will be changed to observe their impact on performance and risk, ultimately leading to which variables are most indicative of success. For this comparison the baseline will be an all-aluminum airframe and composite-aluminum hybrids and all composite designs will be analyzed. The primary comparison will be factors that affect DOC (direct operating costs) and weight. 
 
 The final design of the aircraft is capable of delivering 4000 lbs of cargo and 200 passengers over 4300 nmi. This can be extended to just below 6000 nmi with the removal of cargo and passenger load. This range exceeds that of the Boeing 737. Composite airframe structures and advancements in turbofan engines make significant improvements to aircraft design. With these additions, the airframe can achieve greater efficiency, lower DOC, and lower fuel and takeoff weights. When coupling this with other options such as high aspect ratio swept wings, supercritical airfoils, winglets, and anti-shock bodies, the improvements add up  significantly. The fully dimensioned plane resembles that of a medium class transport like the 737, and its performance, cost, and other parameters are also extremely similar.
@@ -36,11 +38,17 @@ https://github.com/pepe-roni/aerodynamicsCFD/blob/main/195/output.png
 See a full report here! https://docs.google.com/document/d/1Q3HVWSurWS-HKOuec8uOBUdu3PdFcdoMMpoL0xtbG_E/edit?usp=sharing
 
 # 112 Propulsion Systems - Supersonic Turbofan Engine Design
+
+<img src="https://github.com/pepe-roni/aerodynamicsCFD/blob/main/112/Screenshot%202022-06-15%20144220.jpg" />
+
 The objective of this project was to design a turbofan engine for a commercial application. In this real life example, we are tuning our parameters to be on par with an example from Boom Technologies (https://boomsupersonic.com). For this project, we will be designing to meet the requirements for their supersonic business jet, the Overture. To have a compelling option for them, we must meet their design specifications which we will cover in the introduction. Additionally, we must tune parameters of the turbofan engine on design characteristics to achieve the desired outcome. These include turbine inlet temperature, compressor pressure ratio, bypass ratio, bypass pressure ratio, and engine inlet diameter. Tradeoffs and compromises must be made in order for all specifications and requirements to be met.
 
 See full report: https://docs.google.com/document/d/1nposa372G0WSS5NIN29Xs4I7jhmCFPcny86xvYq9tRo/edit?usp=sharing
 
 # 112 Propulsion Systems - Ramjet On-design Performance
+
+<img src="https://github.com/pepe-roni/aerodynamicsCFD/blob/main/112/Screenshot%202022-06-15%20144123.jpg" />
+
 Ramjets are simple air-breathing engines that operate primarily (and most optimally) in supersonic flight. While subsonic speeds are possible, we will see how the ramjet performs with varying and increasing Mach number flows. The ramjet is largely dependent on the maximum temperature of the combustion chamber. This is typically limited by the constraints and choice of the material. Having a higher temperature in combustion will typically result in better efficiency in both thrust and fuel consumption. In this report, we will explore the thrust, fuel consumption, efficiencies, and other on-design parameters of the ramjet engine in super and partially hypersonic flight.
 
 See full report: https://docs.google.com/document/d/1Ez_rfg51uyH499CT98kBn2j6Q9d20e1HbWmX-NeTIis/edit?usp=sharing
